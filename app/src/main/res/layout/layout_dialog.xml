@@ -15,30 +15,19 @@
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/ic_android_black_24dp"
         android:ems="10"
-        android:hint=" Username"
-        android:inputType="textPersonName"
-        />
-
-    <EditText
-        android:id="@+id/passfg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/userfp"
-        android:drawableStart="@drawable/ic_lock_outline_black_24dp"
-        android:hint=" Password"
-        android:inputType="textPassword"
-        android:layout_alignParentStart="true"/>
+        android:hint="  Email"
+        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/resetpass"
-        android:layout_width="wrap_content"
+        android:layout_width="153dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/passfg"
-        android:layout_marginTop="40dp"
+        android:layout_below="@+id/userfp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:background="#28b78d"
         android:gravity="center"
         android:text="SET PASSWORD"
-        android:layout_centerHorizontal="true"
-        android:background="#28b78d"
 
         />
 </RelativeLayout>
