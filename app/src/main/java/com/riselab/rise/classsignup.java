@@ -113,7 +113,7 @@ public class classsignup extends AppCompatActivity {
             phoneno.requestFocus();
             return;
         }
-        if(!isNum(phoneno.toString())){
+        if(!isNum(phoneno.getText().toString())){
             phoneno.setError("Please Enter a valid Phone Number");
             phoneno.requestFocus();
             return;
@@ -165,13 +165,13 @@ public class classsignup extends AppCompatActivity {
         });
 
     }
-
-    public boolean isNum(String str){
-        try{
+    public static boolean isNum(String str) {
+        try {
             Double.parseDouble(str);
             return true;
-        }catch (NumberFormatException e){
+        } catch(NumberFormatException e){
             return false;
         }
     }
+
 }

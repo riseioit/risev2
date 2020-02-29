@@ -138,9 +138,6 @@ public class login extends AppCompatActivity {
         String name = sname.getText().toString().trim();
         String password = pass.getText().toString().trim();
         int tdex = 0;
-        if (arrayList.isEmpty()){
-            Toast.makeText(getApplicationContext(),"Seems like Internet is Slow",Toast.LENGTH_LONG).show();
-        }
         if (arrayList.contains(name)) {
             tdex = arrayList.indexOf(name);
             String emailid = arrayList1.get(tdex);
@@ -158,7 +155,7 @@ public class login extends AppCompatActivity {
                         vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vib.vibrate(200);
                         progressDialog.cancel();
-                        Intent i = new Intent(getApplicationContext(), afterlogin.class);
+                        Intent i = new Intent(getApplicationContext(), afterlogin.class); //
                         startActivity(i);
                     } else {
                         Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
@@ -183,15 +180,21 @@ public class login extends AppCompatActivity {
 //                   else if (!arrayList1.get(tdex).equals(password) &&(arrayList2.get(tdex).equals("student")||arrayList2.get(tdex).equals("admin")))
 //                    Toast.makeText(getApplicationContext(), "Invalid Password",Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_LONG).show();
-            vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-            vib.vibrate(200);
-            try {
-                TimeUnit.MILLISECONDS.sleep(400);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+
+            if ( arrayList.isEmpty()){
+                Toast.makeText(getApplicationContext(),"Seems like Internet is slow",Toast.LENGTH_SHORT).show();
             }
-            vib.vibrate(200);
+            else {
+                Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_LONG).show();
+                vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                vib.vibrate(200);
+                try {
+                    TimeUnit.MILLISECONDS.sleep(400);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                vib.vibrate(200);
+            }
         }
     }
 

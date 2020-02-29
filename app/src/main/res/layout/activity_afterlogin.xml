@@ -21,6 +21,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_afterlogin"
-        app:menu="@menu/activity_afterlogin_drawer" />
+        app:menu="@menu/activity_afterlogin_drawer"
+        android:background="#27363b"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
