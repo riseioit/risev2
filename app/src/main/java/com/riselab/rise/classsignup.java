@@ -5,26 +5,26 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class classsignup extends AppCompatActivity {
@@ -33,6 +33,8 @@ public class classsignup extends AppCompatActivity {
     String usrtype;
     ProgressDialog progressDialog;
     Vibrator vib ;
+    final ArrayList<String> arrayList1 = new ArrayList<>();
+    final ArrayList<String> arrayList = new ArrayList<>();
     private FirebaseAuth mAuth;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("user");
@@ -52,12 +54,31 @@ public class classsignup extends AppCompatActivity {
         usrtype = bundle.getString("type");
         progressDialog=new ProgressDialog(this);
 
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot keynode : dataSnapshot.getChildren()) {
+                    String value = keynode.getKey();
+                    String email = keynode.child("email").getValue().toString();
+                    arrayList.add(value);
+                    arrayList1.add(email);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         sgnup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signupfn();
             }
         });
+
+
     }
     public void signupfn(){
         vib =  (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -77,6 +98,26 @@ public class classsignup extends AppCompatActivity {
             email.requestFocus();
             return;
         }
+        if(arrayList.contains(username)){
+            user.setError("User Already Exists");
+            user.requestFocus();
+            return;
+        }
+        if (arrayList1.contains(emailid)){
+            email.setError("Email Already in use");
+            email.requestFocus();
+            return;
+        }
+        if(!(phoneno.length() == 10) ){
+            phoneno.setError("Phone No. must be of 10 digits");
+            phoneno.requestFocus();
+            return;
+        }
+        if(!isNum(phoneno.toString())){
+            phoneno.setError("Please Enter a valid Phone Number");
+            phoneno.requestFocus();
+            return;
+        }
         if(username.contains(" ")){
             user.setError("Enter a Username without Space");
             user.requestFocus();
@@ -88,6 +129,8 @@ public class classsignup extends AppCompatActivity {
             password.requestFocus();
             return;
         }
+
+
         progressDialog.setMessage("Registering! Please wait");
         progressDialog.show();
         mAuth.createUserWithEmailAndPassword(emailid,pass).addOnCompleteListener(classsignup.this, new OnCompleteListener<AuthResult>() {
@@ -121,5 +164,14 @@ public class classsignup extends AppCompatActivity {
             }
         });
 
+    }
+
+    public boolean isNum(String str){
+        try{
+            Double.parseDouble(str);
+            return true;
+        }catch (NumberFormatException e){
+            return false;
+        }
     }
 }

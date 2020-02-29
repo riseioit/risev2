@@ -138,6 +138,9 @@ public class login extends AppCompatActivity {
         String name = sname.getText().toString().trim();
         String password = pass.getText().toString().trim();
         int tdex = 0;
+        if (arrayList.isEmpty()){
+            Toast.makeText(getApplicationContext(),"Seems like Internet is Slow",Toast.LENGTH_LONG).show();
+        }
         if (arrayList.contains(name)) {
             tdex = arrayList.indexOf(name);
             String emailid = arrayList1.get(tdex);

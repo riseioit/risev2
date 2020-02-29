@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/ic_android_black_24dp"
         android:ems="10"
-        android:hint="  Email"
+        android:hint="Email"
+        android:drawablePadding="8dp"
         android:inputType="textPersonName" />
 
     <Button
@@ -28,6 +29,5 @@
         android:background="#28b78d"
         android:gravity="center"
         android:text="SET PASSWORD"
-
         />
 </RelativeLayout>
