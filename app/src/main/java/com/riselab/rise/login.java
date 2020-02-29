@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,7 +47,7 @@ public class login extends AppCompatActivity {
     final ArrayList<String> arrayList = new ArrayList<>();
     final ArrayList<String> arrayList2 = new ArrayList<>();
     ProgressDialog progressDialog;
-    FirebaseAuth firebaseAuth;
+        FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,13 +135,20 @@ public class login extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+    }
+
     private void Auth() {
-        String name = sname.getText().toString().trim();
+        final String name = sname.getText().toString().trim();
         String password = pass.getText().toString().trim();
         int tdex = 0;
         if (arrayList.contains(name)) {
             tdex = arrayList.indexOf(name);
-            String emailid = arrayList1.get(tdex);
+            final String emailid = arrayList1.get(tdex);
 
             progressDialog.setMessage("Please wait!");
 
@@ -155,8 +163,14 @@ public class login extends AppCompatActivity {
                         vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vib.vibrate(200);
                         progressDialog.cancel();
+                        FirebaseUser user = firebaseAuth.getCurrentUser();
                         Intent i = new Intent(getApplicationContext(), afterlogin.class); //
+                        Bundle bundle = new Bundle();
+                        bundle.putString("email",emailid);
+                        bundle.putString("username",name);
+                        i.putExtras(bundle);
                         startActivity(i);
+                        finish();
                     } else {
                         Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -213,4 +227,6 @@ public class login extends AppCompatActivity {
         classdialog dialog = new classdialog();
         dialog.show(getSupportFragmentManager(),"Reset Password");
     }
+
+
 }
