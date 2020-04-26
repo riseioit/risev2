@@ -42,8 +42,9 @@ public class HomeFragment extends Fragment {
     Uri filePath;
     FirebaseStorage storage;
     StorageReference storageRef;
-    String username , emailid;
+    String username , emailid , loginname , phoneno;
     StorageReference ref;
+    TextView loginuser , loginemail , loginphn;
     private Bitmap my_image;
 
     private final int PICK_IMAGE_REQUEST = 22;
@@ -57,12 +58,16 @@ public class HomeFragment extends Fragment {
 
         username = bundle.getString("username");
         emailid = bundle.getString("email");
+        loginname = bundle.getString("loginname");
+        phoneno = bundle.getString("phnno");
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         userimage = root.findViewById(R.id.userimg);
-
+        loginuser = root.findViewById(R.id.loginusername);
+        loginemail = root.findViewById(R.id.loginemail);
+        loginphn = root.findViewById(R.id.loginphoneno);
           ref = storageRef.child(username).child("pfp").child("image");
 
         File localFile = null;
@@ -101,8 +106,18 @@ public class HomeFragment extends Fragment {
 //                textView.setText(s);
 //            }
 //        });
-
-
+        userimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"Long click to change your profile picture",Toast.LENGTH_LONG).show();
+            }
+        });
+        String uname ="Name: " + loginname;
+        String email = "Email ID: " + emailid;
+        String phn = "Phone No: +91 " + phoneno;
+        loginuser.setText(uname);
+        loginemail.setText(email);
+        loginphn.setText(phn);
 
         return root;
     }

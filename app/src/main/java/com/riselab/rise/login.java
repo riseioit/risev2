@@ -46,6 +46,8 @@ public class login extends AppCompatActivity {
     final ArrayList<String> arrayList1 = new ArrayList<>();
     final ArrayList<String> arrayList = new ArrayList<>();
     final ArrayList<String> arrayList2 = new ArrayList<>();
+    final ArrayList<String> arrayList3 = new ArrayList<>();
+    final ArrayList<String> arrayList4 = new ArrayList<>();
     ProgressDialog progressDialog;
         FirebaseAuth firebaseAuth;
 
@@ -64,7 +66,6 @@ public class login extends AppCompatActivity {
 
         firebaseAuth=FirebaseAuth.getInstance();
         progressDialog=new ProgressDialog(this);
-
         String newuser = getcolortext("New User?", "#FFFFFF");
         String sgnup = getcolortext("Sign Up" , "#28b78d");
         signup.setTextSize(15);
@@ -85,9 +86,13 @@ public class login extends AppCompatActivity {
                     String value = keynode.getKey();
                     String email = keynode.child("email").getValue().toString();
                     String type = keynode.child("type").getValue().toString();
+                    String name = keynode.child("name").getValue().toString();
+                    String phnn = keynode.child("phoneno").getValue().toString();
                     arrayList.add(value);
                     arrayList1.add(email);
                     arrayList2.add(type);
+                    arrayList3.add(name);
+                    arrayList4.add(phnn);
                 }
             }
 
@@ -99,6 +104,7 @@ public class login extends AppCompatActivity {
         slogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Auth();
                 vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                 vib.vibrate(200);
@@ -149,12 +155,12 @@ public class login extends AppCompatActivity {
         if (arrayList.contains(name)) {
             tdex = arrayList.indexOf(name);
             final String emailid = arrayList1.get(tdex);
-
+            final String loginname = arrayList3.get(tdex);
+            final String phoneno = arrayList4.get(tdex);
             progressDialog.setMessage("Please wait!");
 
-
-
             progressDialog.show();
+            final int finalTdex = tdex;
             firebaseAuth.signInWithEmailAndPassword(emailid, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -168,6 +174,8 @@ public class login extends AppCompatActivity {
                         Bundle bundle = new Bundle();
                         bundle.putString("email",emailid);
                         bundle.putString("username",name);
+                        bundle.putString("loginname",loginname);
+                        bundle.putString("phnno",phoneno);
                         i.putExtras(bundle);
                         startActivity(i);
                         finish();

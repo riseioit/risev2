@@ -56,13 +56,14 @@
     <Button
         android:id="@+id/login"
         android:layout_width="105dp"
-        android:layout_height="58dp"
+        android:layout_height="50dp"
+
         android:text="login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
-        android:background="#28b78d" />
+        android:background="@drawable/roundedbutton"/>
 
     <TextView
         android:id="@+id/signup"
