@@ -5,16 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#27363b"
+    android:background="@drawable/dialogbg"
     android:padding="30dp"
     >
 
     <EditText
         android:id="@+id/userfp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:drawableStart="@drawable/ic_android_black_24dp"
         android:ems="10"
+        android:background="@drawable/loginedittext"
         android:hint="Email"
         android:drawablePadding="8dp"
         android:inputType="textPersonName" />
@@ -26,8 +27,9 @@
         android:layout_below="@+id/userfp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
-        android:background="#28b78d"
+        android:background="@drawable/roundedbutton"
         android:gravity="center"
         android:text="SET PASSWORD"
+
         />
 </RelativeLayout>

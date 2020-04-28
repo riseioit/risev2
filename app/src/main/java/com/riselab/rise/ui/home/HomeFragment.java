@@ -32,6 +32,7 @@ import com.riselab.rise.R;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -45,6 +46,10 @@ public class HomeFragment extends Fragment {
     String username , emailid , loginname , phoneno;
     StorageReference ref;
     TextView loginuser , loginemail , loginphn;
+     ArrayList<String> arrayList1 = new ArrayList<>();
+     ArrayList<String> arrayList2 = new ArrayList<>();
+     ArrayList<String> arrayList3 = new ArrayList<>();
+     ArrayList<String> arrayList4 = new ArrayList<>();
     private Bitmap my_image;
 
     private final int PICK_IMAGE_REQUEST = 22;
@@ -64,6 +69,17 @@ public class HomeFragment extends Fragment {
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
+        int no = 0;
+        arrayList1 = bundle.getStringArrayList("emailids");
+        arrayList2 = bundle.getStringArrayList("types");
+        arrayList3 = bundle.getStringArrayList("names");
+        arrayList4 = bundle.getStringArrayList("phnnos");
+        for (int i =  0 ; i <arrayList1.size();i++){
+            if (arrayList2.get(i).equals("admin")){
+                no ++;
+            }
+        }
+        Toast.makeText(getContext(),String.valueOf(no),Toast.LENGTH_LONG).show();
         userimage = root.findViewById(R.id.userimg);
         loginuser = root.findViewById(R.id.loginusername);
         loginemail = root.findViewById(R.id.loginemail);

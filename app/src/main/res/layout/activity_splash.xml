@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".splash"
-    android:background="@drawable/spashh">
+    android:background="@drawable/backgroundtry">
 
     <View
         android:id="@+id/filter"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
-        android:alpha="0.15"
-        android:background="#000700"
+        android:alpha="0.10"
+        android:background="@drawable/spashh"
         tools:layout_editor_absoluteX="-70dp"
         tools:layout_editor_absoluteY="0dp">
 
@@ -27,6 +27,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/filter"
         app:layout_constraintTop_toTopOf="@+id/filter"
-        app:srcCompat="@drawable/logowhite" />
+        app:srcCompat="@drawable/riseshadow" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

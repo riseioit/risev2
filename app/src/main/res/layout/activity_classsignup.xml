@@ -5,18 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".login"
-    android:background="#27363b"
+    android:background="@drawable/backgroundtry"
     >
 
 
     <EditText
         android:id="@+id/username"
-        android:drawablePadding="8dp"
         android:layout_width="299dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="24dp"
+        android:background="@drawable/loginedittext"
         android:drawableStart="@drawable/ic_android_black_24dp"
+        android:drawablePadding="8dp"
         android:ems="10"
         android:hint="Username"
         android:inputType="textNoSuggestions"
@@ -30,13 +32,15 @@
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <EditText
-        android:drawablePadding="8dp"
         android:id="@+id/password"
         android:layout_width="299dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="24dp"
+        android:background="@drawable/loginedittext"
         android:drawableStart="@drawable/ic_lock_outline_black_24dp"
+        android:drawablePadding="8dp"
         android:ems="10"
         android:hint="Password"
         android:imeActionLabel="@string/action_sign_in_short"
@@ -54,9 +58,8 @@
     <Button
         android:id="@+id/login"
         android:layout_width="105dp"
-        android:layout_height="58dp"
-        android:background="#28b78d"
-
+        android:layout_height="50dp"
+        android:background="@drawable/roundedbutton"
         android:text="Sign Up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,12 +68,13 @@
 
     <EditText
         android:id="@+id/phnno"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
         android:layout_marginTop="50dp"
         android:drawableStart="@android:drawable/stat_sys_speakerphone"
         android:ems="10"
         android:drawablePadding="8dp"
+        android:background="@drawable/loginedittext"
         android:hint="Phone Number"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,6 +82,7 @@
         app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <EditText
+        android:background="@drawable/loginedittext"
         android:id="@+id/name"
         android:layout_width="299dp"
         android:layout_height="48dp"
@@ -95,15 +100,16 @@
         android:id="@+id/email"
         android:layout_width="299dp"
         android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/loginedittext"
         android:drawableStart="@android:drawable/sym_action_email"
-        android:ems="10"
         android:drawablePadding="8dp"
+        android:ems="10"
         android:hint="Email ID"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

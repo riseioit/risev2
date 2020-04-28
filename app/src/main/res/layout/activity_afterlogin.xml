@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
+    android:background="@drawable/backgroundtry"
     >
 
     <include
@@ -22,6 +23,6 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_afterlogin"
         app:menu="@menu/activity_afterlogin_drawer"
-        android:background="#27363b"/>
+        android:background="@drawable/nvbarbg"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

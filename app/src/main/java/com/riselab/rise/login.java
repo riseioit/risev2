@@ -176,6 +176,11 @@ public class login extends AppCompatActivity {
                         bundle.putString("username",name);
                         bundle.putString("loginname",loginname);
                         bundle.putString("phnno",phoneno);
+//                        bundle.putStringArrayList("usernames",arrayList);
+                        bundle.putStringArrayList("emailids",arrayList1);
+                        bundle.putStringArrayList("types",arrayList2);
+                        bundle.putStringArrayList("names",arrayList3);
+                        bundle.putStringArrayList("phnnos",arrayList4);
                         i.putExtras(bundle);
                         startActivity(i);
                         finish();
