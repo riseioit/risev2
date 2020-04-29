@@ -49,7 +49,8 @@ public class login extends AppCompatActivity {
     final ArrayList<String> arrayList3 = new ArrayList<>();
     final ArrayList<String> arrayList4 = new ArrayList<>();
     ProgressDialog progressDialog;
-        FirebaseAuth firebaseAuth;
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    FirebaseUser user = firebaseAuth.getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

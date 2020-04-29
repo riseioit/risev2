@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -24,10 +23,9 @@ import com.riselab.rise.login;
 import com.riselab.rise.splash;
 
 public class SendFragment extends Fragment {
-    ImageView github;
+    ImageView github , insta , whatsapp , email , linkedin , githubaman , telegram , instaaman , facebook;
 
     private SendViewModel sendViewModel;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         sendViewModel =
@@ -42,6 +40,91 @@ public class SendFragment extends Fragment {
                 httpIntent.setData(Uri.parse("https://www.github.com/orgs/riseioit"));
                 startActivity(httpIntent);
 
+            }
+        });
+
+        insta = root.findViewById(R.id.instaimg);
+        insta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"Please Wait!",Toast.LENGTH_SHORT).show();
+                Intent httpIntent = new Intent(Intent.ACTION_VIEW);
+                httpIntent.setData(Uri.parse("https://www.instagram.com/rise_ioit?igshid=xk5crvagh4kc"));
+                startActivity(httpIntent);
+
+            }
+        });
+
+        whatsapp = root.findViewById(R.id.whatsapp);
+        whatsapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"Please Wait!",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:+91 7021211083"));
+                startActivity(intent);
+            }
+        });
+
+        email = root.findViewById(R.id.email);
+        email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"Please Wait!",Toast.LENGTH_SHORT).show();
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                        "mailto","amankumar48765@gmail.com", null));
+                startActivity(Intent.createChooser(emailIntent, "Send email..."));
+            }
+        });
+
+        linkedin = root.findViewById(R.id.linkedinaman);
+        linkedin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"Please Wait!",Toast.LENGTH_SHORT).show();
+                Intent httpIntent = new Intent(Intent.ACTION_VIEW);
+                httpIntent.setData(Uri.parse("https://www.linkedin.com/in/aman-kumar-52ab56192"));
+                startActivity(httpIntent);
+            }
+        });
+        telegram = root.findViewById(R.id.telegram);
+        telegram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"Please Wait!",Toast.LENGTH_SHORT).show();
+                Intent httpIntent = new Intent(Intent.ACTION_VIEW);
+                httpIntent.setData(Uri.parse("https://t.me/Toshiro0_0"));
+                startActivity(httpIntent);
+            }
+        });
+        githubaman = root.findViewById(R.id.github);
+        githubaman.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"Please Wait!",Toast.LENGTH_SHORT).show();
+                Intent httpIntent = new Intent(Intent.ACTION_VIEW);
+                httpIntent.setData(Uri.parse("https://www.github.com/shady48765"));
+                startActivity(httpIntent);
+            }
+        });
+        instaaman = root.findViewById(R.id.instagram);
+        instaaman.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"Please Wait!",Toast.LENGTH_SHORT).show();
+                Intent httpIntent = new Intent(Intent.ACTION_VIEW);
+                httpIntent.setData(Uri.parse("https://www.instagram.com/shady48765?igshid=b2lmly77eohd"));
+                startActivity(httpIntent);
+            }
+        });
+        facebook = root.findViewById(R.id.facebook);
+        facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"Please Wait!",Toast.LENGTH_SHORT).show();
+                Intent httpIntent = new Intent(Intent.ACTION_VIEW);
+                httpIntent.setData(Uri.parse("https://www.facebook.com/riseioit"));
+                startActivity(httpIntent);
             }
         });
         return root;
