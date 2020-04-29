@@ -1,11 +1,14 @@
 package com.riselab.rise;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.os.Vibrator;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -25,6 +28,8 @@ import android.widget.ImageView;
 
 public class afterlogin extends AppCompatActivity {
     ImageView logoal ;
+    Vibrator vib ;
+    MenuItem profile ;
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -42,13 +47,13 @@ public class afterlogin extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
+                R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
+        profile =  findViewById(R.id.action_profile);
     }
 
 
@@ -56,6 +61,18 @@ public class afterlogin extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.afterlogin, menu);
+
+//        profile.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//                vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+//                vib.vibrate(200);
+//                dialogprofile dialog = new dialogprofile();
+//                dialog.show(getSupportFragmentManager(),"Profile");
+//                return false;
+//            }
+//        });
+
         return true;
     }
 
@@ -64,5 +81,22 @@ public class afterlogin extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public void upload(MenuItem item) {
+        vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vib.vibrate(200);
+//        dialogupload dialog = new dialogupload();
+//        dialog.show(getSupportFragmentManager(),"Reset Password");
+
+    }
+
+    public void profile(MenuItem item) {
+        vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vib.vibrate(200);
+        dialogprofile dialog = new dialogprofile();
+        dialog.show(getSupportFragmentManager(),"Profile");
+//        classdialog dialog = new classdialog();
+//        dialog.show(getSupportFragmentManager(),"Reset Password");
     }
 }

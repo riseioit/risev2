@@ -1,6 +1,7 @@
-package com.riselab.rise.ui.tools;
+package com.riselab.rise;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,16 +11,13 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,7 +25,6 @@ import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.riselab.rise.R;
 import com.riselab.rise.ui.home.HomeViewModel;
 
 import java.io.File;
@@ -36,7 +33,7 @@ import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 
-public class ToolsFragment extends Fragment {
+public class dialogprofile extends AppCompatDialogFragment{
 
     private HomeViewModel homeViewModel;
     ImageView userimage;
@@ -46,23 +43,25 @@ public class ToolsFragment extends Fragment {
     String username , emailid , loginname , phoneno;
     StorageReference ref;
     TextView loginuser , loginemail , loginphn;
-    ArrayList<String> arrayList1 = new ArrayList<>();
-    ArrayList<String> arrayList2 = new ArrayList<>();
-    ArrayList<String> arrayList3 = new ArrayList<>();
-    ArrayList<String> arrayList4 = new ArrayList<>();
-    private Bitmap my_image;
-
+    ProgressDialog progressDialog;
     private final int PICK_IMAGE_REQUEST = 22;
 
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    private Bitmap my_image;
 
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.fragment_tools,null);
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View view = inflater.inflate(R.layout.profiledialog,null);
         builder.setView(view);
+        userimage = view.findViewById(R.id.icon);
+        loginuser = view.findViewById(R.id.row1);
+        loginemail = view.findViewById(R.id.row2);
+        loginphn = view.findViewById(R.id.row3);
+
         storage = FirebaseStorage.getInstance();
         storageRef = FirebaseStorage.getInstance().getReference();
         Bundle bundle = getActivity().getIntent().getExtras();
@@ -71,25 +70,8 @@ public class ToolsFragment extends Fragment {
         emailid = bundle.getString("email");
         loginname = bundle.getString("loginname");
         phoneno = bundle.getString("phnno");
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_tools, container, false);
 
-        int no = 0;
-        arrayList1 = bundle.getStringArrayList("emailids");
-        arrayList2 = bundle.getStringArrayList("types");
-        arrayList3 = bundle.getStringArrayList("names");
-        arrayList4 = bundle.getStringArrayList("phnnos");
-        for (int i =  0 ; i <arrayList1.size();i++){
-            if (arrayList2.get(i).equals("admin")){
-                no ++;
-            }
-        }
-        Toast.makeText(getContext(),String.valueOf(no),Toast.LENGTH_LONG).show();
-        userimage = root.findViewById(R.id.userimg);
-        loginuser = root.findViewById(R.id.loginusername);
-        loginemail = root.findViewById(R.id.loginemail);
-        loginphn = root.findViewById(R.id.loginphoneno);
+
         ref = storageRef.child(username).child("pfp").child("image");
 
         File localFile = null;
@@ -103,13 +85,17 @@ public class ToolsFragment extends Fragment {
                 .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+//                        progressDialog.setMessage("Please wait!");
+//                        progressDialog.show();
                         my_image = BitmapFactory.decodeFile(finalLocalFile.getAbsolutePath());
                         userimage.setImageBitmap(my_image);
+//                        progressDialog.cancel();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 // Handle failed download
+                Toast.makeText(getContext(),"Long click on the image to change your profile photo! ",Toast.LENGTH_LONG).show();
                 // ...
             }
         });
@@ -121,19 +107,14 @@ public class ToolsFragment extends Fragment {
                 return false;
             }
         });
-//        final TextView textView = root.findViewById(R.id.text_home);
-//        homeViewModel.getText().observe(this, new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
+
         userimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(),"Long click to change your profile picture",Toast.LENGTH_LONG).show();
             }
         });
+
         String uname ="Name: " + loginname;
         String email = "Email ID: " + emailid;
         String phn = "Phone No: +91 " + phoneno;
@@ -141,7 +122,8 @@ public class ToolsFragment extends Fragment {
         loginemail.setText(email);
         loginphn.setText(phn);
 
-        return root;
+
+        return builder.create();
     }
 
     private void SelectImage()
@@ -196,7 +178,4 @@ public class ToolsFragment extends Fragment {
             }
         }
     }
-
-
-
 }

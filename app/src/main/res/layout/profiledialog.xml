@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="30dp"
+    android:background="@drawable/nvbarbg">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/icon"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:src="@android:drawable/ic_menu_camera"
+            android:gravity="left"
+            app:civ_border_width="2dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+            app:civ_border_color="#FFFFFF"
+            />
+
+        <TextView
+            android:layout_toRightOf="@id/icon"
+            android:id="@+id/row1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:textColor="@android:color/white"
+            android:textSize="17dp"
+
+            />
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:id="@+id/row2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="13dp"
+            android:layout_below="@+id/row1"
+            android:layout_toRightOf="@+id/icon"
+            android:layout_toEndOf="@+id/icon" />
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:id="@+id/row3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="13dp"
+            android:layout_below="@+id/row2"
+            android:layout_toRightOf="@+id/icon"
+            android:layout_toEndOf="@+id/icon" />
+
+
+    </RelativeLayout>
+</LinearLayout>

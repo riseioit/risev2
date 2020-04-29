@@ -2,8 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" >
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_upload"
         android:orderInCategory="100"
         android:title="Upload"
-        app:showAsAction="never" />
+        app:showAsAction="never"
+        android:onClick="upload"
+        />
+    <item
+        android:id="@+id/action_profile"
+        android:title="Profile"
+        android:orderInCategory="100"
+        android:onClick="profile"
+        />
 </menu>
