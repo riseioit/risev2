@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="30dp"
+    android:background="@drawable/nvbarbg">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Share Your Experience"
+        android:textSize="20dp"
+        android:id="@+id/exp"
+        />
+
+    <EditText
+        android:id="@+id/edittextupload"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/exp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/loginedittext"
+        android:gravity="center"
+        android:hint="Your Response"/>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edittextupload"
+        android:paddingTop="30dp"
+
+        >
+<Button
+    android:id="@+id/uploadbutton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Upload Image"
+    android:paddingStart="12dp"
+    android:paddingEnd="12dp"
+    android:background="@drawable/roundedbutton"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toStartOf="@id/submitbutton"
+    app:layout_constraintTop_toTopOf="parent"
+
+/>
+        <TextView
+            android:id="@+id/taskstatus"
+            android:textSize="15dp"
+            android:fontFamily="casual"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/uploadbutton"
+            app:layout_constraintBottom_toBottomOf="@+id/uploadbutton"
+            app:layout_constraintStart_toEndOf="@+id/uploadbutton"
+            />
+<Button
+    android:id="@+id/submitbutton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Submit"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/uploadbutton"
+    android:background="@drawable/roundedbutton"
+   app:layout_constraintTop_toTopOf="@+id/uploadbutton"
+/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

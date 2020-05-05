@@ -7,36 +7,36 @@
     >
 
     <ImageView
-        android:layout_marginTop="50dp"
         android:id="@+id/githubimg"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/instaimg"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/facebook"
+        app:layout_constraintEnd_toStartOf="@+id/instaimg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/githubgrey" />
 
     <ImageView
         android:id="@+id/instaimg"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        app:layout_constraintStart_toEndOf="@id/githubimg"
         app:layout_constraintBottom_toTopOf="@+id/facebook"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/githubimg"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/instagrey" />
 
     <TextView
         android:layout_marginTop="50dp"
-        app:layout_constraintTop_toBottomOf="@+id/facebook"
+
         android:id="@+id/creatortital"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="casual"
         android:text="About Creator"
         android:textSize="22dp"
-        app:layout_constraintBottom_toBottomOf="@id/horizontalline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="275dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -136,8 +136,8 @@
         app:layout_constraintStart_toEndOf="@+id/telegram"
         app:layout_constraintTop_toBottomOf="@+id/circleImageView"
         android:src="@drawable/instagram"/>
+
     <ImageView
-        android:layout_marginTop="50dp"
         android:id="@+id/facebook"
         android:layout_width="150dp"
         android:layout_height="150dp"

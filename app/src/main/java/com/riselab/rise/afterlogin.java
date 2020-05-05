@@ -86,8 +86,8 @@ public class afterlogin extends AppCompatActivity {
     public void upload(MenuItem item) {
         vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vib.vibrate(200);
-//        dialogupload dialog = new dialogupload();
-//        dialog.show(getSupportFragmentManager(),"Reset Password");
+        dialogupload dialog = new dialogupload();
+        dialog.show(getSupportFragmentManager(),"Upload");
 
     }
 
@@ -96,7 +96,6 @@ public class afterlogin extends AppCompatActivity {
         vib.vibrate(200);
         dialogprofile dialog = new dialogprofile();
         dialog.show(getSupportFragmentManager(),"Profile");
-//        classdialog dialog = new classdialog();
-//        dialog.show(getSupportFragmentManager(),"Reset Password");
+
     }
 }
