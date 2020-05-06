@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/edittextupload"
         android:paddingTop="30dp"
-
+        android:layout_marginBottom="5dp"
         >
 <Button
     android:id="@+id/uploadbutton"
@@ -52,9 +52,10 @@
             android:fontFamily="casual"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/uploadbutton"
-            app:layout_constraintBottom_toBottomOf="@+id/uploadbutton"
-            app:layout_constraintStart_toEndOf="@+id/uploadbutton"
+            app:layout_constraintEnd_toEndOf="@+id/uploadbutton"
+            app:layout_constraintTop_toBottomOf="@+id/uploadbutton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/uploadbutton"
             />
 <Button
     android:id="@+id/submitbutton"

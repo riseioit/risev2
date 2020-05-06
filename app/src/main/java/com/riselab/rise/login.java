@@ -177,6 +177,7 @@ public class login extends AppCompatActivity {
                         bundle.putString("username",name);
                         bundle.putString("loginname",loginname);
                         bundle.putString("phnno",phoneno);
+                        bundle.putString("type",arrayList2.get(finalTdex));
 //                        bundle.putStringArrayList("usernames",arrayList);
                         bundle.putStringArrayList("emailids",arrayList1);
                         bundle.putStringArrayList("types",arrayList2);

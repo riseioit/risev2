@@ -25,6 +25,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class afterlogin extends AppCompatActivity {
     ImageView logoal ;
@@ -32,13 +33,16 @@ public class afterlogin extends AppCompatActivity {
     MenuItem profile ;
 
     private AppBarConfiguration mAppBarConfiguration;
-
+String type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_afterlogin);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Bundle bundle = getIntent().getExtras();
+
+        type = bundle.getString("type");
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -84,10 +88,15 @@ public class afterlogin extends AppCompatActivity {
     }
 
     public void upload(MenuItem item) {
-        vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        vib.vibrate(200);
-        dialogupload dialog = new dialogupload();
-        dialog.show(getSupportFragmentManager(),"Upload");
+        if(type.equals("admin")) {
+            vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            vib.vibrate(200);
+            dialogupload dialog = new dialogupload();
+            dialog.show(getSupportFragmentManager(), "Upload");
+        }
+        else {
+            Toast.makeText(getApplicationContext(),"Only R.I.S.E Members can upload",Toast.LENGTH_LONG).show();
+        }
 
     }
 

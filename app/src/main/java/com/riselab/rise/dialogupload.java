@@ -32,6 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.riselab.rise.ui.home.HomeFragment;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -136,6 +137,7 @@ public class dialogupload extends AppCompatDialogFragment {
             vib.vibrate(200);
             filePath = null;
             status.setText("");
+
         }
         else if(filePath == null && !(uploadedittext.getText().toString().equals(""))){
 
