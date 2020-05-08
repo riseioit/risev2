@@ -67,6 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/phnno" />
 
     <EditText
+        android:paddingStart="7dp"
         android:id="@+id/phnno"
         android:layout_width="250dp"
         android:layout_height="48dp"
@@ -85,6 +86,7 @@
         android:background="@drawable/loginedittext"
         android:id="@+id/name"
         android:layout_width="299dp"
+        android:paddingStart="2dp"
         android:layout_height="48dp"
         android:layout_marginTop="150dp"
         android:drawableStart="@android:drawable/ic_menu_rotate"
@@ -97,6 +99,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:paddingStart="5dp"
         android:id="@+id/email"
         android:layout_width="299dp"
         android:layout_height="48dp"
@@ -104,6 +107,7 @@
         android:background="@drawable/loginedittext"
         android:drawableStart="@android:drawable/sym_action_email"
         android:drawablePadding="8dp"
+
         android:ems="10"
         android:hint="Email ID"
         android:inputType="textEmailAddress"

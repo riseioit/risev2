@@ -5,4 +5,5 @@
     <color name="colorAccent">#28b78d</color>
     <color name="semiTransparentColor">#30000000</color>
     <color name="semiTransparentDark">#50000000</color>
+    <color name="Transparent">#00000000</color>
 </resources>

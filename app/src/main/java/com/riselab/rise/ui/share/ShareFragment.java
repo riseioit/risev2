@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -27,7 +29,7 @@ import com.riselab.rise.StudentDetails;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShareFragment extends Fragment {
+public class ShareFragment extends Fragment implements SearchView.OnQueryTextListener{
 
     private ShareViewModel shareViewModel;
     List<StudentDetails> list = new ArrayList<>();
@@ -39,6 +41,9 @@ public class ShareFragment extends Fragment {
     ProgressDialog progressDialog;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("user");
+    StudentDetails studentDetails;
+    SearchView searchView;
+    ArrayList<String> names = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -55,12 +60,25 @@ public class ShareFragment extends Fragment {
 
         progressDialog = new ProgressDialog(getContext());
 
-        progressDialog.setMessage("Loading Data");
 
+
+        searchView = root.findViewById(R.id.searchview);
+        LoadData();
+
+        searchView.setIconifiedByDefault(false);
+        searchView.setOnQueryTextListener(this);
+//        searchView.setSubmitButtonEnabled(true);
+        searchView.setQueryHint("Enter Name");
+
+
+        return root;
+    }
+
+    private void LoadData() {
+
+        progressDialog.setMessage("Loading Data!");
         progressDialog.show();
-
-
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot keynode : dataSnapshot.getChildren()) {
@@ -70,8 +88,11 @@ public class ShareFragment extends Fragment {
                     String phnn = keynode.child("phoneno").getValue().toString();
                     String type = keynode.child("type").getValue().toString();
                     if(type.equals("admin")) {
-                        StudentDetails studentDetails = new StudentDetails(name, phnn, email,value);
-                        list.add(studentDetails);
+                        if(!names.contains(name)) {
+                            names.add(name);
+                            studentDetails = new StudentDetails(name, phnn, email, value);
+                            list.add(studentDetails);
+                        }
                     }
                 }
                 adapter = new RecyclerViewAdapter(getContext(), list);
@@ -86,6 +107,132 @@ public class ShareFragment extends Fragment {
         });
 
 
-        return root;
     }
+
+    @Override
+    public boolean onQueryTextSubmit(final String query) {
+//        int count = 0;
+//
+//            for (int i = 0; i < names.size(); i++) {
+//                if (names.get(i).toLowerCase().trim().contains(query.toLowerCase().trim())) {
+//                    list.clear();
+//                    count++;
+//                    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(DataSnapshot dataSnapshot) {
+//                            for (DataSnapshot keynode : dataSnapshot.getChildren()) {
+//                                String value = keynode.getKey();
+//                                String email = keynode.child("email").getValue().toString();
+//                                String name = keynode.child("name").getValue().toString();
+//                                String phnn = keynode.child("phoneno").getValue().toString();
+//                                String type = keynode.child("type").getValue().toString();
+//                                if (type.equals("admin")) {
+//                                    if (name.toLowerCase().trim().contains(query.toLowerCase().trim())) {
+//                                        studentDetails = new StudentDetails(name, phnn, email, value);
+//                                        list.add(studentDetails);
+//                                    }
+//                                }
+//                            }
+//                            adapter = new RecyclerViewAdapter(getContext(), list);
+//                            recyclerView.setAdapter(adapter);
+//                            progressDialog.dismiss();
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(DatabaseError databaseError) {
+//                            progressDialog.dismiss();
+//                        }
+//                    });
+//                }
+//
+//            }
+//
+//        if(count == 0 && query.length() != 0) {
+//            Toast.makeText(getContext(),"No Such Member Found!",Toast.LENGTH_LONG).show();
+//        }
+//Toast.makeText(getContext(),query,Toast.LENGTH_LONG).show();
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(final String newText) {
+
+        if (newText.length() == 0){
+            list.clear();
+            names.clear();
+
+            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot keynode : dataSnapshot.getChildren()) {
+                        String value = keynode.getKey();
+                        String email = keynode.child("email").getValue().toString();
+                        String name = keynode.child("name").getValue().toString();
+                        String phnn = keynode.child("phoneno").getValue().toString();
+                        String type = keynode.child("type").getValue().toString();
+                        if(type.equals("admin")) {
+                            if(!names.contains(name)) {
+                                names.add(name);
+                                studentDetails = new StudentDetails(name, phnn, email, value);
+                                list.add(studentDetails);
+                            }
+                        }
+                    }
+                    adapter = new RecyclerViewAdapter(getContext(), list);
+                    recyclerView.setAdapter(adapter);
+                    progressDialog.dismiss();
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    progressDialog.dismiss();
+                }
+            });
+        }
+        else {
+            int count = 0;
+
+            for (int i = 0; i < names.size(); i++) {
+                if (names.get(i).toLowerCase().trim().contains(newText.toLowerCase().trim())) {
+                    list.clear();
+                    count++;
+                    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot keynode : dataSnapshot.getChildren()) {
+                                String value = keynode.getKey();
+                                String email = keynode.child("email").getValue().toString();
+                                String name = keynode.child("name").getValue().toString();
+                                String phnn = keynode.child("phoneno").getValue().toString();
+                                String type = keynode.child("type").getValue().toString();
+                                if (type.equals("admin")) {
+                                    if (name.toLowerCase().trim().contains(newText.toLowerCase().trim())) {
+                                        studentDetails = new StudentDetails(name, phnn, email, value);
+                                        list.add(studentDetails);
+                                    }
+                                }
+                            }
+                            adapter = new RecyclerViewAdapter(getContext(), list);
+                            recyclerView.setAdapter(adapter);
+                            progressDialog.dismiss();
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            progressDialog.dismiss();
+                        }
+                    });
+                }
+
+            }
+
+            if(count == 0 && newText.length() != 0) {
+                Toast.makeText(getContext(),"No Such Member Found!",Toast.LENGTH_LONG).show();
+            }
+        }
+
+        return true;
+    }
+
+
 }

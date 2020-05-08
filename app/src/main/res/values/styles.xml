@@ -16,6 +16,9 @@
     <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
+<style name="MainActionBar.Popup" parent="Theme.AppCompat.Light">
+    <item name="android:colorBackground">#99000000</item>
+    <item name="android:textColor">#FFFFFF</item>
+</style>
 
 </resources>

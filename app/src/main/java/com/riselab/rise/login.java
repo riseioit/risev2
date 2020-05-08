@@ -69,7 +69,7 @@ public class login extends AppCompatActivity {
         progressDialog=new ProgressDialog(this);
         String newuser = getcolortext("New User?", "#FFFFFF");
         String sgnup = getcolortext("Sign Up" , "#28b78d");
-        signup.setTextSize(15);
+        signup.setTextSize(16);
         signup.setText(Html.fromHtml(newuser+ " " + sgnup));
 
 
@@ -80,6 +80,7 @@ public class login extends AppCompatActivity {
 //                return false;
 //            }
 //        });
+
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -102,6 +103,7 @@ public class login extends AppCompatActivity {
 
             }
         });
+
         slogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,13 +142,29 @@ public class login extends AppCompatActivity {
             }
         });
 
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+
     }
 
     @Override
     public void onStart() {
         super.onStart();
+//        progressDialog=new ProgressDialog(this);
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+//        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+//        if(currentUser != null){
+//            String email = currentUser.getEmail();
+//            while (!arrayList1.contains(email))
+//            {
+//
+//            }
+//            if (arrayList1.contains(email)){
+//                int index = arrayList1.indexOf(email);
+//                Toast.makeText(getApplicationContext(),arrayList.get(index),Toast.LENGTH_LONG).show();
+//
+//            }
+//
+//        }
     }
 
     private void Auth() {
@@ -166,6 +184,7 @@ public class login extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
+
                         Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_LONG).show();
                         vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vib.vibrate(200);

@@ -17,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="#08151a"
-            app:popupTheme="@style/PopupOverlay" />
+            app:popupTheme="@style/MainActionBar.Popup"
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
 

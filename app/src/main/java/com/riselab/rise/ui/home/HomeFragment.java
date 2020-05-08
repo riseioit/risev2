@@ -62,6 +62,8 @@ int no = 0;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("upload");
     private Bitmap my_image;
+    SwipeRefreshLayout swipeRefreshLayout;
+    ArrayList<String> timelist = new ArrayList<>();
 
     private final int PICK_IMAGE_REQUEST = 22;
 
@@ -75,7 +77,11 @@ int no = 0;
 
         recyclerView.setHasFixedSize(true);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+
+        recyclerView.setLayoutManager(linearLayoutManager);
 
 
         progressDialog = new ProgressDialog(getContext());
@@ -83,15 +89,9 @@ int no = 0;
         progressDialog.setMessage("Loading Data");
 
         progressDialog.show();
-        final SwipeRefreshLayout swipeRefreshLayout = root.findViewById(R.id.swiperefresh);
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                load();
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
+
+
 
             myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -100,6 +100,7 @@ int no = 0;
                         String time = keynode.getKey();
                         String doneby = keynode.child("doneby").getValue().toString();
                         String response = keynode.child("response").getValue().toString();
+                        timelist.add(time);
                         UploadDetails uploadDetails = new UploadDetails(doneby, time, response);
                         list.add(uploadDetails);
                     }
@@ -113,6 +114,14 @@ int no = 0;
                     progressDialog.dismiss();
                 }
             });
+            swipeRefreshLayout = root.findViewById(R.id.swiperefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                load();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         return root;
 
@@ -127,9 +136,13 @@ int no = 0;
                     String time = keynode.getKey();
                     String doneby = keynode.child("doneby").getValue().toString();
                     String response = keynode.child("response").getValue().toString();
+                    if(!timelist.contains(time)){
                     UploadDetails uploadDetails = new UploadDetails(doneby, time, response);
                     list.add(uploadDetails);
+                    timelist.add(time);}
                 }
+
+                adapter.notifyDataSetChanged();
                 adapter = new RecyclerViewUploadAdapter(getContext(), list);
                 recyclerView.setAdapter(adapter);
                 progressDialog.dismiss();

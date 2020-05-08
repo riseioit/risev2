@@ -57,8 +57,10 @@
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
     <Button
+        android:paddingStart="35dp"
+        android:paddingEnd="35dp"
         android:id="@+id/login"
-        android:layout_width="105dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:text="login"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,8 +73,10 @@
         android:id="@+id/signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textSize="15dp"
+        android:layout_marginBottom="1dp"
+        android:padding="15dp"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/frgtpass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login" />
@@ -93,9 +97,8 @@
 
     <TextView
         android:id="@+id/frgtpass"
-        android:layout_width="127dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:onClick="frgtpass"
         android:text="Forgot Password?"
         android:textColor="#28b78d"

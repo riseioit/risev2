@@ -72,7 +72,6 @@ public class dialogupload extends AppCompatDialogFragment {
         uploadedittext = view.findViewById(R.id.edittextupload);
         upload = view.findViewById(R.id.uploadbutton);
         submit = view.findViewById(R.id.submitbutton);
-        status = view.findViewById(R.id.taskstatus);
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -113,7 +112,7 @@ public class dialogupload extends AppCompatDialogFragment {
             Date date = new Date();
             String newdate = dateFormat.format(date).toString();
             ref = storageRef.child(newdate).child(username);
-            myRef.child(newdate).child("doneby").setValue(username);
+            myRef.child(newdate).   child("doneby").setValue(username);
             myRef.child(newdate).child("response").setValue(uploadedittext.getText().toString());
             final ProgressDialog progressDialog = new ProgressDialog(getContext());
             progressDialog.setMessage("Uploading");
@@ -136,7 +135,7 @@ public class dialogupload extends AppCompatDialogFragment {
             uploadedittext.setText("");
             vib.vibrate(200);
             filePath = null;
-            status.setText("");
+            upload.setText("Upload Image");
 
         }
         else if(filePath == null && !(uploadedittext.getText().toString().equals(""))){
@@ -196,8 +195,7 @@ public class dialogupload extends AppCompatDialogFragment {
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             filePath = data.getData();
-            status.setText("Uploaded");
-
+            upload.setText("Image Selected");
         }
     }
 }

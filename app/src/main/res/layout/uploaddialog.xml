@@ -32,6 +32,7 @@
         android:layout_below="@+id/edittextupload"
         android:paddingTop="30dp"
         android:layout_marginBottom="5dp"
+        android:paddingBottom="5dp"
         >
 <Button
     android:id="@+id/uploadbutton"
@@ -46,17 +47,7 @@
     app:layout_constraintTop_toTopOf="parent"
 
 />
-        <TextView
-            android:id="@+id/taskstatus"
-            android:textSize="15dp"
-            android:fontFamily="casual"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/uploadbutton"
-            app:layout_constraintTop_toBottomOf="@+id/uploadbutton"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/uploadbutton"
-            />
+
 <Button
     android:id="@+id/submitbutton"
     android:layout_width="wrap_content"

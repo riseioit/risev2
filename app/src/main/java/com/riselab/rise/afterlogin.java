@@ -17,6 +17,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -27,11 +28,13 @@ import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.concurrent.TimeUnit;
+
 public class afterlogin extends AppCompatActivity {
     ImageView logoal ;
     Vibrator vib ;
     MenuItem profile ;
-
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private AppBarConfiguration mAppBarConfiguration;
 String type;
     @Override
@@ -58,6 +61,7 @@ String type;
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         profile =  findViewById(R.id.action_profile);
+
     }
 
 
@@ -96,6 +100,14 @@ String type;
         }
         else {
             Toast.makeText(getApplicationContext(),"Only R.I.S.E Members can upload",Toast.LENGTH_LONG).show();
+            vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            vib.vibrate(200);
+            try {
+                TimeUnit.MILLISECONDS.sleep(400);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            vib.vibrate(200);
         }
 
     }
@@ -106,5 +118,12 @@ String type;
         dialogprofile dialog = new dialogprofile();
         dialog.show(getSupportFragmentManager(),"Profile");
 
+    }
+
+    public void signoutfirebase(MenuItem item) {
+        firebaseAuth.signOut();
+        Intent i = new Intent(getApplicationContext(),login.class);
+        startActivity(i);
+        finish();
     }
 }
