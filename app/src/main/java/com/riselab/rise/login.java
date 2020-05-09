@@ -66,7 +66,7 @@ public class login extends AppCompatActivity {
         slogin = findViewById(R.id.login);
 
         firebaseAuth=FirebaseAuth.getInstance();
-        progressDialog=new ProgressDialog(this);
+        progressDialog=new ProgressDialog(this,R.style.MyAlertDialogStyle);
         String newuser = getcolortext("New User?", "#FFFFFF");
         String sgnup = getcolortext("Sign Up" , "#28b78d");
         signup.setTextSize(16);
