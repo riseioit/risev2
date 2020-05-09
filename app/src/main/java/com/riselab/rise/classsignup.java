@@ -152,6 +152,8 @@ public class classsignup extends AppCompatActivity {
                     phoneno.setText("");
                     password.setText("");
                     user.setText("");
+                    Intent intent = new Intent(getApplicationContext(),login.class);
+                    startActivity(intent);
                 }
                 else {
                     vib.vibrate(400);

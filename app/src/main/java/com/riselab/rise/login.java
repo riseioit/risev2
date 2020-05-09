@@ -81,7 +81,7 @@ public class login extends AppCompatActivity {
 //            }
 //        });
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot keynode : dataSnapshot.getChildren()) {
