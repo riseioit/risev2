@@ -21,4 +21,22 @@
     <item name="android:textColor">#FFFFFF</item>
 </style>
 
+    <style name="MyAlertDialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:alertDialogStyle">@style/CustomAlertDialogStyle</item>
+        <item name="android:textColorPrimary">#000000</item>
+    </style>
+
+    <style name="CustomAlertDialogStyle">
+        <item name="android:bottomBright">#30000000</item>
+        <item name="android:bottomDark">#30000000</item>
+        <item name="android:bottomMedium">#30000000</item>
+        <item name="android:centerBright">#30000000</item>
+        <item name="android:centerDark">#30000000</item>
+        <item name="android:centerMedium">#30000000</item>
+        <item name="android:fullBright">#30000000</item>
+        <item name="android:fullDark">#30000000</item>
+        <item name="android:topBright">#30000000</item>
+        <item name="android:topDark">#30000000</item>
+    </style>
+
 </resources>

@@ -90,6 +90,80 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:551544673516:android:1cd44c06c39dde73b4c1c9",
+        "android_client_info": {
+          "package_name": "com.firebse.newdb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "551544673516-ml35bem039d0l401gueujad5ac703k9v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.firebse.newdb",
+            "certificate_hash": "60797a2922bda2645ad4e68f0083773c2ceb79da"
+          }
+        },
+        {
+          "client_id": "551544673516-6b1d5bvrqm6gt2ichsduslqh2akq3tkl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCc8ZJ7MvNFzATG4_7A19PhQBigNvhCcMc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "551544673516-6b1d5bvrqm6gt2ichsduslqh2akq3tkl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551544673516:android:717001101fb1b815b4c1c9",
+        "android_client_info": {
+          "package_name": "com.firebse.node"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "551544673516-orqims1jkd0nuq40h97cjhq7m1iam32k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.firebse.node",
+            "certificate_hash": "60797a2922bda2645ad4e68f0083773c2ceb79da"
+          }
+        },
+        {
+          "client_id": "551544673516-6b1d5bvrqm6gt2ichsduslqh2akq3tkl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCc8ZJ7MvNFzATG4_7A19PhQBigNvhCcMc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "551544673516-6b1d5bvrqm6gt2ichsduslqh2akq3tkl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:551544673516:android:cd01bef293cab534b4c1c9",
         "android_client_info": {
           "package_name": "com.firebse.riseapplication_2nd_version"
@@ -101,6 +175,43 @@
           "client_type": 1,
           "android_info": {
             "package_name": "com.firebse.riseapplication_2nd_version",
+            "certificate_hash": "60797a2922bda2645ad4e68f0083773c2ceb79da"
+          }
+        },
+        {
+          "client_id": "551544673516-6b1d5bvrqm6gt2ichsduslqh2akq3tkl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCc8ZJ7MvNFzATG4_7A19PhQBigNvhCcMc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "551544673516-6b1d5bvrqm6gt2ichsduslqh2akq3tkl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551544673516:android:a80562e4b1254664b4c1c9",
+        "android_client_info": {
+          "package_name": "com.firebse.write_data"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "551544673516-caa1v1gc58kk2obtra2sscpr78ihmeu3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.firebse.write_data",
             "certificate_hash": "60797a2922bda2645ad4e68f0083773c2ceb79da"
           }
         },
@@ -170,6 +281,22 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "551544673516-00mnjqqrnr431n6r5eap610h1qbbd66q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.riselab.rise",
+            "certificate_hash": "cb57655756dc86b394634c3082d9483e1fad98c8"
+          }
+        },
+        {
+          "client_id": "551544673516-fin2sv9erkdq4063ppg3rlnt7mvagsm2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.riselab.rise",
+            "certificate_hash": "11724aa4c009d76ca77f5321b2ca5b7d6bfc8478"
+          }
+        },
         {
           "client_id": "551544673516-k9785qrspnir2517qr28njq074kbc846.apps.googleusercontent.com",
           "client_type": 1,

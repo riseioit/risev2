@@ -1,8 +1,10 @@
 package com.riselab.rise.ui.send;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,11 +44,13 @@ public class SendFragment extends Fragment {
 
             }
         });
+        final Vibrator vib = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
 
         insta = root.findViewById(R.id.instaimg);
         insta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vib.vibrate(200);
                 Toast.makeText(getContext(),"Please Wait!",Toast.LENGTH_SHORT).show();
                 Intent httpIntent = new Intent(Intent.ACTION_VIEW);
                 httpIntent.setData(Uri.parse("https://www.instagram.com/rise_ioit?igshid=xk5crvagh4kc"));
@@ -59,6 +63,8 @@ public class SendFragment extends Fragment {
         whatsapp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vib.vibrate(200);
+
                 Toast.makeText(getContext(),"Please Wait!",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:+91 7021211083"));
@@ -70,6 +76,8 @@ public class SendFragment extends Fragment {
         email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vib.vibrate(200);
+
                 Toast.makeText(getContext(),"Please Wait!",Toast.LENGTH_SHORT).show();
                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                         "mailto","amankumar48765@gmail.com", null));
@@ -81,6 +89,8 @@ public class SendFragment extends Fragment {
         linkedin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vib.vibrate(200);
+
                 Toast.makeText(getContext(),"Please Wait!",Toast.LENGTH_SHORT).show();
                 Intent httpIntent = new Intent(Intent.ACTION_VIEW);
                 httpIntent.setData(Uri.parse("https://www.linkedin.com/in/aman-kumar-52ab56192"));
@@ -91,6 +101,8 @@ public class SendFragment extends Fragment {
         telegram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vib.vibrate(200);
+
                 Toast.makeText(getContext(),"Please Wait!",Toast.LENGTH_SHORT).show();
                 Intent httpIntent = new Intent(Intent.ACTION_VIEW);
                 httpIntent.setData(Uri.parse("https://t.me/Toshiro0_0"));
@@ -101,6 +113,8 @@ public class SendFragment extends Fragment {
         githubaman.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vib.vibrate(200);
+
                 Toast.makeText(getContext(),"Please Wait!",Toast.LENGTH_SHORT).show();
                 Intent httpIntent = new Intent(Intent.ACTION_VIEW);
                 httpIntent.setData(Uri.parse("https://www.github.com/shady48765"));
@@ -111,6 +125,8 @@ public class SendFragment extends Fragment {
         instaaman.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vib.vibrate(200);
+
                 Toast.makeText(getContext(),"Please Wait!",Toast.LENGTH_SHORT).show();
                 Intent httpIntent = new Intent(Intent.ACTION_VIEW);
                 httpIntent.setData(Uri.parse("https://www.instagram.com/shady48765?igshid=b2lmly77eohd"));
@@ -121,6 +137,8 @@ public class SendFragment extends Fragment {
         facebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vib.vibrate(200);
+
                 Toast.makeText(getContext(),"Please Wait!",Toast.LENGTH_SHORT).show();
                 Intent httpIntent = new Intent(Intent.ACTION_VIEW);
                 httpIntent.setData(Uri.parse("https://www.facebook.com/riseioit"));

@@ -54,7 +54,7 @@ public class classsignup extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         Bundle bundle = getIntent().getExtras();
         usrtype = bundle.getString("type");
-        progressDialog=new ProgressDialog(this);
+        progressDialog=new ProgressDialog(this, R.style.MyAlertDialogStyle);
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override

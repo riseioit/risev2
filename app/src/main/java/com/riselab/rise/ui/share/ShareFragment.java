@@ -58,7 +58,7 @@ public class ShareFragment extends Fragment implements SearchView.OnQueryTextLis
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-        progressDialog = new ProgressDialog(getContext());
+        progressDialog = new ProgressDialog(getContext(), R.style.MyAlertDialogStyle);
 
 
 

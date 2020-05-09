@@ -114,8 +114,9 @@ public class dialogupload extends AppCompatDialogFragment {
             ref = storageRef.child(newdate).child(username);
             myRef.child(newdate).   child("doneby").setValue(username);
             myRef.child(newdate).child("response").setValue(uploadedittext.getText().toString());
-            final ProgressDialog progressDialog = new ProgressDialog(getContext());
+            final ProgressDialog progressDialog = new ProgressDialog(getContext(),R.style.MyAlertDialogStyle);
             progressDialog.setMessage("Uploading");
+
             progressDialog.show();
             ref.putFile(filePath)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {

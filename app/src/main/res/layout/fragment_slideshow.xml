@@ -6,32 +6,77 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:layout_width="150dp"
-        android:layout_height="300dp"
+        android:id="@+id/componentet"
+        android:layout_width="175dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/backgroungcardv"
+        android:gravity="center"
+        android:hint="Enter Component"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/quantity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/taskEdittext"
-        android:background="@drawable/backgroungcardv"
-        android:hint="Enter Component"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintVertical_bias="0.25"/>
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:id="@+id/quantity"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:background="@drawable/backgroungcardv"
-        android:hint="Enter Price"
-        android:paddingStart="5dp"
-        android:textAlignment="center"
+        android:hint="Enter Quantity"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/taskEdittext"
-        app:layout_constraintTop_toTopOf="@+id/taskEdittext" />
+        app:layout_constraintStart_toEndOf="@+id/componentet"
+        app:layout_constraintTop_toTopOf="@+id/componentet"
+        />
+
+    <EditText
+        android:id="@+id/pricet"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintVertical_bias="0.3"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/backgroungcardv"
+        android:inputType="number"
+        android:gravity="center"
+        android:hint="Enter Price"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/componentet" />
+
+    <Button
+        android:background="@drawable/whiteroundbutton"
+        android:text="Request"
+        android:id="@+id/reqbut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.7"
+        app:layout_constraintEnd_toStartOf="@+id/boughtbut"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/componentet" />
+    <Button
+        android:background="@drawable/whiteroundbutton"
+        android:text="Bought"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/boughtbut"
+        app:layout_constraintStart_toEndOf="@+id/reqbut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/reqbut"
+        />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

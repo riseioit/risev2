@@ -164,14 +164,14 @@ public class RecyclerViewUploadAdapter extends RecyclerView.Adapter<RecyclerView
             holder.timedifference.setText((int)diffInSec+" s " );
         }
         else if(diffInDays !=0){
-            holder.timedifference.setText((int) diffInDays +" d ");
+            holder.timedifference.setText((int) diffInDays +" d " + diffInHours +" h" );
         }
 
         holder.StudentNameTextView.setText(uploadDetails.getDoneby());
         String username = uploadDetails.getDoneby();
         String time = uploadDetails.getTime();
         ref = storageRef.child(time).child(username);
-        holder.StudentResponse.setText(uploadDetails.getResponse());
+        holder.StudentResponse.setText(uploadDetails.getResponse().trim());
         File localFile = null;
         try {
             localFile = File.createTempFile("images", "jpeg");

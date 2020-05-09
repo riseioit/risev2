@@ -84,15 +84,14 @@ int no = 0;
         recyclerView.setLayoutManager(linearLayoutManager);
 
 
-        progressDialog = new ProgressDialog(getContext());
+        progressDialog = new ProgressDialog(getContext(), R.style.MyAlertDialogStyle);
 
         progressDialog.setMessage("Loading Data");
 
         progressDialog.show();
 
 
-
-
+        final int[] count = {0};
             myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -100,9 +99,12 @@ int no = 0;
                         String time = keynode.getKey();
                         String doneby = keynode.child("doneby").getValue().toString();
                         String response = keynode.child("response").getValue().toString();
-                        timelist.add(time);
-                        UploadDetails uploadDetails = new UploadDetails(doneby, time, response);
-                        list.add(uploadDetails);
+                        count[0]++;
+                        if (count[0]<dataSnapshot.getChildrenCount()) {
+                            timelist.add(time);
+                            UploadDetails uploadDetails = new UploadDetails(doneby, time, response);
+                            list.add(uploadDetails);
+                        }
                     }
                     adapter = new RecyclerViewUploadAdapter(getContext(), list);
                     recyclerView.setAdapter(adapter);

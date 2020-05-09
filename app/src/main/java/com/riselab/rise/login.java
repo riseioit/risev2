@@ -185,6 +185,7 @@ public class login extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
 
+
                         Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_LONG).show();
                         vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vib.vibrate(200);
@@ -219,6 +220,7 @@ public class login extends AppCompatActivity {
                     }
                 }
             });
+
 
 //                   if(arrayList2.get(tdex).equals("admin")&&arrayList1.get(tdex).equals(password)) {
 //                       Toast.makeText(getApplicationContext(), "Welcome admin",Toast.LENGTH_LONG).show();

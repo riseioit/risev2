@@ -39,6 +39,7 @@ public class GalleryFragment extends Fragment {
 
         Bundle bundle = getActivity().getIntent().getExtras();
         final String uname = bundle.getString("username");
+        final String type = bundle.getString("type");
         galleryViewModel =
                 ViewModelProviders.of(this).get(GalleryViewModel.class);
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
@@ -50,25 +51,37 @@ public class GalleryFragment extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(data.getText().toString().equals("")){
-                    Toast.makeText(getContext(),"Please enter Task done today!",Toast.LENGTH_LONG).show();
-                    vib.vibrate(70);
+                if (type.equals("admin")) {
+                    if (data.getText().toString().equals("")) {
+                        Toast.makeText(getContext(), "Please enter Task done today!", Toast.LENGTH_LONG).show();
+                        vib.vibrate(70);
+                        try {
+                            TimeUnit.MILLISECONDS.sleep(250);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        vib.vibrate(70);
+                    } else {
+                        vib.vibrate(75);
+                        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy :hh:mm:ss");
+                        Date date = new Date();
+                        String newdate = dateFormat.format(date).toString();
+                        myRef.child(uname).child(newdate).setValue(data.getText().toString().trim());
+                        data.setText("");
+                        Toast.makeText(getContext(), "Response Submitted", Toast.LENGTH_LONG).show();
+                        data.setHint("Add new Task");
+                    }
+                }
+                else {
+                    Toast.makeText(getContext(),"Only RISE Members can upload",Toast.LENGTH_LONG).show();
+                    vib.vibrate(200);
                     try {
-                        TimeUnit.MILLISECONDS.sleep(250);
+                        TimeUnit.MILLISECONDS.sleep(400);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    vib.vibrate(70);
-                }
-                else {
-                    vib.vibrate(75);
-                    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy :hh:mm:ss");
-                    Date date = new Date();
-                    String newdate = dateFormat.format(date).toString();
-                    myRef.child(uname).child(newdate).setValue(data.getText().toString().trim());
+                    vib.vibrate(200);
                     data.setText("");
-                    Toast.makeText(getContext(), "Response Submitted", Toast.LENGTH_LONG).show();
-                    data.setHint("Add new Task");
                 }
             }
         });

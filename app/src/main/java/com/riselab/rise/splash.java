@@ -2,9 +2,11 @@ package com.riselab.rise;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -82,6 +84,8 @@ public class splash extends AppCompatActivity {
             bundle.putStringArrayList("types",arrayList2);
             bundle.putStringArrayList("names",arrayList3);
             bundle.putStringArrayList("phnnos",arrayList4);
+            Vibrator vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            vib.vibrate(200);
             i.putExtras(bundle);
             startActivity(i);
             finish();
@@ -95,7 +99,6 @@ public class splash extends AppCompatActivity {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user!=null){
             email = user.getEmail();
-//            Toast.makeText(getApplicationContext(),email,Toast.LENGTH_LONG).show();
 
         }
         else

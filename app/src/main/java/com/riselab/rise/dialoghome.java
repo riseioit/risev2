@@ -3,12 +3,18 @@ package com.riselab.rise;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.ScaleGestureDetector;
 import android.view.View;
@@ -27,8 +33,11 @@ import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 public class dialoghome extends AppCompatDialogFragment {
 
@@ -37,6 +46,7 @@ public class dialoghome extends AppCompatDialogFragment {
     ProgressDialog progressDialog;
 
     private Bitmap my_image;
+    Bitmap icon;
     StorageReference ref;
     Uri filePath;
     FirebaseStorage storage;
@@ -54,14 +64,29 @@ public class dialoghome extends AppCompatDialogFragment {
         response = view.findViewById(R.id.responsedialog);
         profile = view.findViewById(R.id.ShowProfiledialog);
         uploadedimage = view.findViewById(R.id.uploadimagedialog);
-        progressDialog=new ProgressDialog(getContext());
+        progressDialog=new ProgressDialog(getContext() , R.style.MyAlertDialogStyle);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         String userS = preferences.getString("usernamedialog", String.valueOf(0));
         String timeS = preferences.getString("timedialog", String.valueOf(1));
         String responseS = preferences.getString("responsedialog", String.valueOf(2));
         String timmdS = preferences.getString("timediffdialog", String.valueOf(3));
 
-
+        uploadedimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Vibrator vib = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
+                vib.vibrate(200);
+                Intent share = new Intent(Intent.ACTION_SEND);
+                share.setType("image/jpeg");
+                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                icon.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+                String path = MediaStore.Images.Media.insertImage(getContext().getContentResolver(),
+                        icon, "Title", null);
+                Uri imageUri =  Uri.parse(path);
+                share.putExtra(Intent.EXTRA_STREAM, imageUri);
+                startActivity(Intent.createChooser(share, "Select"));
+            }
+        });
 
         username.setText(userS);
         time.setText(timmdS);
@@ -87,6 +112,7 @@ public class dialoghome extends AppCompatDialogFragment {
                     public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                         my_image = BitmapFactory.decodeFile(finalLocalFile2.getAbsolutePath());
                         uploadedimage.setImageBitmap(my_image);
+                        icon = my_image;
                         my_image.equals(null);
                     }
                 }).addOnFailureListener(new OnFailureListener() {

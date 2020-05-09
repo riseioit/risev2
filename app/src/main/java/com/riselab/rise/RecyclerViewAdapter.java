@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,7 +55,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public ViewHolder(View itemView) {
 
+
             super(itemView);
+            final Vibrator vib = (Vibrator) itemView.getContext().getSystemService(Context.VIBRATOR_SERVICE);
 
             StudentNameTextView = (TextView) itemView.findViewById(R.id.ShowStudentNameTextView);
             StudentNumberTextView = (TextView) itemView.findViewById(R.id.ShowStudentNumberTextView);
@@ -64,6 +67,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             StudentNumberTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    vib.vibrate(200);
                     Toast.makeText(context,"Please Wait!",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Intent.ACTION_DIAL);
                     String no = StudentNumberTextView.getText().toString().replace("Phone No: ","+91 ");
@@ -75,6 +79,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             StudentEmailTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    vib.vibrate(200);
                     Toast.makeText(context,"Please Wait!",Toast.LENGTH_SHORT).show();
                     String em = StudentEmailTextView.getText().toString().replace("Email Id: ","");
                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(

@@ -154,7 +154,7 @@ public class dialogprofile extends AppCompatDialogFragment{
                 //Setting image to ImageView
                 userimage.setImageBitmap(bitmap);
 
-                final ProgressDialog progressDialog = new ProgressDialog(getContext());
+                final ProgressDialog progressDialog = new ProgressDialog(getContext(), R.style.MyAlertDialogStyle);
                 progressDialog.setMessage("Uploading");
                 progressDialog.show();
                 ref.putFile(filePath)

@@ -59,7 +59,7 @@ public class classdialog extends AppCompatDialogFragment {
         fpuser = view.findViewById(R.id.userfp);
         setpass = view.findViewById(R.id.resetpass);
         mAuth = FirebaseAuth.getInstance();
-        progressDialog=new ProgressDialog(classdialog.this.getActivity());
+        progressDialog=new ProgressDialog(classdialog.this.getActivity(), R.style.MyAlertDialogStyle);
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
