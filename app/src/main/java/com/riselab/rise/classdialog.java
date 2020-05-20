@@ -61,7 +61,7 @@ public class classdialog extends AppCompatDialogFragment {
         mAuth = FirebaseAuth.getInstance();
         progressDialog=new ProgressDialog(classdialog.this.getActivity(), R.style.MyAlertDialogStyle);
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot keynode : dataSnapshot.getChildren()) {

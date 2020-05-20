@@ -43,11 +43,11 @@ public class login extends AppCompatActivity {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("user");
-    final ArrayList<String> arrayList1 = new ArrayList<>();
-    final ArrayList<String> arrayList = new ArrayList<>();
-    final ArrayList<String> arrayList2 = new ArrayList<>();
-    final ArrayList<String> arrayList3 = new ArrayList<>();
-    final ArrayList<String> arrayList4 = new ArrayList<>();
+    ArrayList<String> arrayList1 = new ArrayList<>();
+    ArrayList<String> arrayList = new ArrayList<>();
+    ArrayList<String> arrayList2 = new ArrayList<>();
+    ArrayList<String> arrayList3 = new ArrayList<>();
+    ArrayList<String> arrayList4 = new ArrayList<>();
     ProgressDialog progressDialog;
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -81,28 +81,36 @@ public class login extends AppCompatActivity {
 //            }
 //        });
 
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot keynode : dataSnapshot.getChildren()) {
-                    String value = keynode.getKey();
-                    String email = keynode.child("email").getValue().toString();
-                    String type = keynode.child("type").getValue().toString();
-                    String name = keynode.child("name").getValue().toString();
-                    String phnn = keynode.child("phoneno").getValue().toString();
-                    arrayList.add(value);
-                    arrayList1.add(email);
-                    arrayList2.add(type);
-                    arrayList3.add(name);
-                    arrayList4.add(phnn);
-                }
-            }
+//        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for (DataSnapshot keynode : dataSnapshot.getChildren()) {
+//                    String value = keynode.getKey();
+//                    String email = keynode.child("email").getValue().toString();
+//                    String type = keynode.child("type").getValue().toString();
+//                    String name = keynode.child("name").getValue().toString();
+//                    String phnn = keynode.child("phoneno").getValue().toString();
+//                    arrayList.add(value);
+//                    arrayList1.add(email);
+//                    arrayList2.add(type);
+//                    arrayList3.add(name);
+//                    arrayList4.add(phnn);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+        Intent i = getIntent();
+        Bundle bundle = i.getExtras();
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        arrayList1 = bundle.getStringArrayList("emailids");
+        arrayList2 = bundle.getStringArrayList("types");
+        arrayList3 = bundle.getStringArrayList("names");
+        arrayList4 = bundle.getStringArrayList("phnnos");
+        arrayList = bundle.getStringArrayList("username");
 
         slogin.setOnClickListener(new View.OnClickListener() {
             @Override

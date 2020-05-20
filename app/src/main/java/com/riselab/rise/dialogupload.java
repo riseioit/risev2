@@ -73,7 +73,7 @@ public class dialogupload extends AppCompatDialogFragment {
         upload = view.findViewById(R.id.uploadbutton);
         submit = view.findViewById(R.id.submitbutton);
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot keynode : dataSnapshot.getChildren()) {

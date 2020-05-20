@@ -90,6 +90,28 @@ public class splash extends AppCompatActivity {
             startActivity(i);
             finish();
         }
+        else
+        {
+//            new Handler().postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+            Intent i = new Intent(splash.this, login.class);
+//                    startActivity(i);
+//                    finish();
+//                }
+//            },2500);
+            Bundle bundle = new Bundle();
+            bundle.putStringArrayList("emailids",arrayList1);
+            bundle.putStringArrayList("types",arrayList2);
+            bundle.putStringArrayList("names",arrayList3);
+            bundle.putStringArrayList("phnnos",arrayList4);
+            bundle.putStringArrayList("username",arrayList);
+            Vibrator vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            vib.vibrate(200);
+            i.putExtras(bundle);
+            startActivity(i);
+            finish();
+        }
     }
 
     @Override
@@ -101,17 +123,7 @@ public class splash extends AppCompatActivity {
             email = user.getEmail();
 
         }
-        else
-        {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent i = new Intent(splash.this, login.class);
-                    startActivity(i);
-                    finish();
-                }
-            },2500);
-        }
+
     }
 
 }

@@ -56,7 +56,7 @@ public class classsignup extends AppCompatActivity {
         usrtype = bundle.getString("type");
         progressDialog=new ProgressDialog(this, R.style.MyAlertDialogStyle);
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot keynode : dataSnapshot.getChildren()) {

@@ -92,28 +92,30 @@ int no = 0;
 
 
 
-            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot keynode : dataSnapshot.getChildren()) {
-                        String time = keynode.getKey();
-                        String doneby = keynode.child("doneby").getValue().toString();
-                        String response = keynode.child("response").getValue().toString();
-
-                            timelist.add(time);
-                            UploadDetails uploadDetails = new UploadDetails(doneby, time, response);
-                            list.add(uploadDetails);
-                    }
-                    adapter = new RecyclerViewUploadAdapter(getContext(), list);
-                    recyclerView.setAdapter(adapter);
-                    progressDialog.dismiss();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot keynode : dataSnapshot.getChildren()) {
+                    String time = keynode.getKey();
+                    String doneby = keynode.child("doneby").getValue().toString();
+                    String response = keynode.child("response").getValue().toString();
+                    if(!timelist.contains(time)){
+                        UploadDetails uploadDetails = new UploadDetails(doneby, time, response);
+                        list.add(uploadDetails);
+                        timelist.add(time);}
                 }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    progressDialog.dismiss();
-                }
-            });
+                adapter = new RecyclerViewUploadAdapter(getContext(), list);
+                recyclerView.setAdapter(adapter);
+                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                progressDialog.dismiss();
+            }
+        });
+
             swipeRefreshLayout = root.findViewById(R.id.swiperefresh);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

@@ -122,8 +122,7 @@ String type;
 
     public void signoutfirebase(MenuItem item) {
         firebaseAuth.signOut();
-        Intent i = new Intent(getApplicationContext(),login.class);
-        startActivity(i);
         finish();
+        System.exit(0);
     }
 }
